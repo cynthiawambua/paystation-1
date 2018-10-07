@@ -23,7 +23,7 @@ import java.util.Map;
  */
 public class PayStationImpl implements PayStation {
     
-    private int insertedSoFar;
+    public int insertedSoFar;
     public int timeBought; //**CHANGED FROM INT
     //Keeps track of total
     private double totalPaid; //temp int for timeBought
@@ -52,6 +52,7 @@ public class PayStationImpl implements PayStation {
     @Override
     public void addPayment(int coinValue)
             throws IllegalCoinException {
+        //System.out.println("RateStrategy: " + rateStrategy);
         //Use switch cases and when person pays with coin increase amount of certain coin used
         switch (coinValue) {
             case 5:

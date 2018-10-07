@@ -6,7 +6,6 @@ import paystation.domain.LinearRateStrategy;
 import paystation.domain.ProgressiveRateStrategy;
 import paystation.domain.Alternation;
 
-
 public class Main extends PayStationImpl {
 
     public static void main(String[] args)
@@ -20,14 +19,12 @@ public class Main extends PayStationImpl {
             Scanner menu = new Scanner(System.in);
             int choice = menu.nextInt();
 
-            
             // System.out.println("Your choice is: " + choice);
             int coin; //coin that user inserts
             Scanner coinSlot = new Scanner(System.in);
             switch (choice) {
                 case 1: //Deposit Coins
                     System.out.println("Enter Your Coins - type '0' to stop: ");
-                    
 
                     while (true) {
                         coin = coinSlot.nextInt();
@@ -52,21 +49,33 @@ public class Main extends PayStationImpl {
                     System.out.println("Change Rate Strategy\n");
                     System.out.println("1: Linear Rate \n2: Progressive Rate \n3:Alternative Rate");
                     int rate = menu.nextInt();
-                    switch(rate){
+                    //LinearRateStrategy lrs = new LinearRateStrategy();
+                    ProgressiveRateStrategy prs = new ProgressiveRateStrategy();
+                    switch (rate) {
                         case 1: //Linear Rate
-                            lrs = new LinearRateStrategy();
+                            //lrs = new LinearRateStrategy();
                             ps = new PayStationImpl(lrs);
-                            
-                            break; 
+
+                            break;
                         case 2: //Progressive Rate
-                            ProgressiveRateStrategy prs = new ProgressiveRateStrategy();
+                            //ProgressiveRateStrategy prs = new ProgressiveRateStrategy();
                             ps = new PayStationImpl(prs);
                             break;
                         case 3://Alternative Rate
-                            Alternation alt = new Alternation();
-                            ps = new PayStationImpl(alt);
+                            System.out.println("Is it a weekend? 1 for yes and 2 for no");
+                            int yn = menu.nextInt();
+
+                            switch (yn) { 
+                                case 2: //weekend
+                                    ps = new PayStationImpl(lrs); //implement linear rate strategy
+                                    break;
+
+                                case 1: //weekday
+                                    ps = new PayStationImpl(prs);//implement progressive rate strategy
+                                    break;
+                            }
                     }
-                    
+
                     break;
             }
 

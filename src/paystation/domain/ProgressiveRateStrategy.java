@@ -5,7 +5,7 @@ public class ProgressiveRateStrategy implements RateStrategy{
         
     }
     public double calculateTime(int insertedSoFar){
-        System.out.println("WE IN PROGRESSIVE PRINT\n");
+        //System.out.println("WE'RE IN PROGRESSIVE PRINT\n");
         PayStationImpl ps = new PayStationImpl();
         int tempFirstHour, tempSecondHour, tempThirdPlusHour;//temp holders for how many coins will contribut to that hour
         int timeBought1;//for first hour
@@ -17,7 +17,7 @@ public class ProgressiveRateStrategy implements RateStrategy{
             ps.timeBought = insertedSoFar / 5 * 2;
         } 
         else if(insertedSoFar > 150 && insertedSoFar <= 350){ //for the second hour $2.00 + $1.50
-            System.out.println("WE IN 2nd HOUR");
+            //System.out.println("WE IN 2nd HOUR");
             tempFirstHour = 150; //$1.50 for the first hour
             tempSecondHour = insertedSoFar - tempFirstHour;
             timeBought1 = tempFirstHour / 5 * 2;
@@ -26,7 +26,7 @@ public class ProgressiveRateStrategy implements RateStrategy{
             ps.timeBought = (int)(timeBought1+timeBought2);
         }
         else if(insertedSoFar >350){ //if its greater than 3 hours
-            System.out.println("WE IN THIRD HOUR");
+            //System.out.println("WE IN THIRD HOUR");
             tempFirstHour = 150; //$1.50 for the first hour
             tempSecondHour = 350; //amount it takes to pay for 2 hours
             tempThirdPlusHour = insertedSoFar - tempSecondHour;
